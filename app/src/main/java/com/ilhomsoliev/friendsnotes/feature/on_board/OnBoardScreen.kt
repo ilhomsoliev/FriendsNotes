@@ -9,7 +9,7 @@ import com.ilhomsoliev.friendsnotes.app.navigation.Screens
 fun NavGraphBuilder.OnBoardContainerComposable(navController: NavController) {
     composable(route = Screens.OnBoardingScreen.route) {
         OnBoardScreen {
-
+            navController.navigate(Screens.AddPersonScreen.route)
         }
     }
 }
@@ -21,7 +21,7 @@ fun OnBoardScreen(
 
     OnBoardContent(object : OnBoardCallback {
         override fun onStartClick() {
-
+            getStarted()
         }
     })
 

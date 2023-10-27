@@ -4,19 +4,19 @@ import androidx.navigation.NavController
 
 
 sealed class Screens(val route: String) {
-    object OnBoardingScreen : Screens("OnBoardingScreen")
-    object MainScreen : Screens("MainScreen")
-    object AddTransactionScreen : Screens("AddTransactionScreen")
-    object AccountScreen : Screens("AccountScreen")
-    object AddAccountScreen : Screens("AddAccountScreen")
-    object GoalsScreen : Screens("GoalsScreen")
-    object AddGoalScreen : Screens("AddGoalScreen")
-    object PurchaseScreen: Screens("PurchaseScreen")
+    data object OnBoardingScreen : Screens("OnBoardingScreen")
+    data object MainScreen : Screens("MainScreen")
+    data object AddTransactionScreen : Screens("AddTransactionScreen")
+    data object AccountScreen : Screens("AccountScreen")
+    data object AddPersonScreen : Screens("AddPersonScreen")
+    data object GoalsScreen : Screens("GoalsScreen")
+    data object AddGoalScreen : Screens("AddGoalScreen")
+    data object PurchaseScreen : Screens("PurchaseScreen")
 
 }
 
-fun navigateBottom(point:Int) =
-    when(point){
+fun navigateBottom(point: Int) =
+    when (point) {
         0 -> Screens.MainScreen.route
         1 -> Screens.AccountScreen.route
         2 -> Screens.GoalsScreen.route

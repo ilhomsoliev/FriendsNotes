@@ -20,7 +20,6 @@ class DataStoreManager(private val context: Context) {
         val refresh_token_key = stringPreferencesKey("refresh_token_key")
         val phone_key = stringPreferencesKey("phone_key")
         val is_first_time_in_app = booleanPreferencesKey("is_first_time_in_app")
-
     }
 
     suspend fun changeIsFirstTimeInActive(value: Boolean) {
