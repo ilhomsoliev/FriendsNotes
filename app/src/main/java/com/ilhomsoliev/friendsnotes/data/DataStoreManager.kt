@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
@@ -18,6 +19,14 @@ class DataStoreManager(private val context: Context) {
         val username_key = stringPreferencesKey("username_key")
         val refresh_token_key = stringPreferencesKey("refresh_token_key")
         val phone_key = stringPreferencesKey("phone_key")
+        val is_first_time_in_app = booleanPreferencesKey("is_first_time_in_app")
+
+    }
+
+    suspend fun changeIsFirstTimeInActive(value: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[is_first_time_in_app] = value
+        }
     }
 
     suspend fun changeToken(value: String) {
@@ -60,5 +69,9 @@ class DataStoreManager(private val context: Context) {
 
     suspend fun getPhone() = withContext(IO) {
         context.dataStore.data.first()[phone_key] ?: ""
+    }
+
+    suspend fun getIsFirstTimeInActive() = withContext(IO) {
+        context.dataStore.data.first()[is_first_time_in_app] ?: true
     }
 }

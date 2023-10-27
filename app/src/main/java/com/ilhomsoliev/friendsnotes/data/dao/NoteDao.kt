@@ -7,10 +7,10 @@ import com.ilhomsoliev.friendsnotes.data.model.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface NoteDao : BaseDao<NoteEntity> {
-    @Query("SELECT * FROM `note` WHERE personId = :personId")
+interface NoteDao /*: BaseDao<NoteEntity> */{
+/*    @Query("SELECT * FROM `note` WHERE personId = :personId")
     fun getNotesByPersonId(personId: Int): Flow<List<NoteEntity>>
 
     @Query("SELECT * FROM `note` WHERE id = :noteId")
-    suspend fun getNoteById(noteId: Int): NoteEntity?
+    suspend fun getNoteById(noteId: Int): NoteEntity?*/
 }

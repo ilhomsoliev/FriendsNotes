@@ -1,4 +1,4 @@
-package com.ilhomsoliev.friendsnotes.feature.main
+package com.ilhomsoliev.friendsnotes.feature.main.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

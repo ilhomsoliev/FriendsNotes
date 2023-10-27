@@ -5,8 +5,9 @@ import androidx.navigation.NavController
 import com.ilhomsoliev.friendsnotes.feature.main.viewmodel.MainViewModel
 
 @Composable
-fun MainScreen(vm: MainViewModel, navController: NavController) {
-    MainContent(state = MainState(false), callback = object : MainCallback {
+fun MainScreen(vm: MainViewModel) {
+    MainContent(
+        state = MainState(false), callback = object : MainCallback {
         override fun onMenuClick() {
 
         }

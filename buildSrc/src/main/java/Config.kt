@@ -2,7 +2,7 @@ import org.gradle.api.JavaVersion
 
 object Config {
 
-    const val compileSdk = 33
+    const val compileSdk = 34
     const val targetSdk = compileSdk
     const val minSdk = 24
     const val versionCode = 1
@@ -16,6 +16,6 @@ object Config {
     val sourceCompatibility = JavaVersion.VERSION_1_8
     val targetCompatibility = sourceCompatibility
 
-    const val composeUiVer = "1.4.0-alpha02"
-    const val composeCompilerVer = "1.4.0-alpha02"
+    const val composeUiVer = "1.5.0"
+    const val composeCompilerVer = "1.5.0"
 }
