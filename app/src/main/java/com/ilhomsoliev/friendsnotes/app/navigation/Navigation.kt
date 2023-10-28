@@ -1,8 +1,11 @@
 package com.ilhomsoliev.friendsnotes.app.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ilhomsoliev.friendsnotes.feature.add_person.presentation.AddPersonScreenComposable
 import com.ilhomsoliev.friendsnotes.feature.main.presentation.MainInitContainerComposable
 import com.ilhomsoliev.friendsnotes.feature.on_board.OnBoardContainerComposable
@@ -12,9 +15,17 @@ fun Navigation() {
 
     val navController = rememberNavController()
 
+    val controller = rememberSystemUiController()
+    LaunchedEffect(key1 = Unit, block = {
+        controller.setSystemBarsColor(Color(0xFFFFFFFF))
+        controller.setNavigationBarColor(Color(0xFFFFFFFF))
+        controller.setStatusBarColor(Color(0xFFFFFFFF))
+    })
+
+
     NavHost(
         navController = navController,
-        startDestination = Screens.AddPersonScreen.route/*Screens.MainScreen.route*/
+        startDestination = Screens.MainScreen.route /*Screens.MainScreen.route*/
     ) {
 
         MainInitContainerComposable(navController)

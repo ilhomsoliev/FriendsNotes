@@ -26,7 +26,8 @@ fun NavGraphBuilder.MainInitContainerComposable(navController: NavController) {
                     launchSingleTop = true
                 }
             },
-            onNavBarSelect = { point ->
+            openAddPerson = {
+                navController.navigate(Screens.AddPersonScreen.route)
             }
         )
     }
@@ -36,7 +37,7 @@ fun NavGraphBuilder.MainInitContainerComposable(navController: NavController) {
 fun MainInitContainer(
     vm: MainViewModel,
     openLogin: () -> Unit,
-    onNavBarSelect: (point: Int) -> Unit,
+    openAddPerson: () -> Unit,
 ) {
 
     val uiState by vm.uiState
@@ -49,9 +50,9 @@ fun MainInitContainer(
         is UiState.Loaded -> {
             MainScreen(
                 vm = vm,
-
-                /*onNavBarSelect = onNavBarSelect,
-                openLogin = openLogin,*/
+                onAddNewPerson = {
+                    openAddPerson()
+                }
             )
         }
 

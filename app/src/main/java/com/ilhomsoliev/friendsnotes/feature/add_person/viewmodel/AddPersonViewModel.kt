@@ -8,10 +8,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+const val maxSteps = 6
 class AddPersonViewModel(
-    val dataStoreManager: DataStoreManager
+    private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
-    private val _currentStep = MutableStateFlow(3) // TODO change it to 1
+    private val _currentStep = MutableStateFlow(1) // TODO change it to 1
     val currentStep = _currentStep.asStateFlow()
 
     private val _personType = MutableStateFlow<PersonType?>(null)

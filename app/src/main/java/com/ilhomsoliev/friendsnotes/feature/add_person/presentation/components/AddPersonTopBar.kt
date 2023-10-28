@@ -28,6 +28,7 @@ import com.ilhomsoliev.friendsnotes.R
 
 @Composable
 fun AddPersonTopBar(
+    maxSteps: Int,
     currentStep: Int,
     onBack: () -> Unit,
 ) {
@@ -39,12 +40,12 @@ fun AddPersonTopBar(
             modifier = Modifier
                 .weight(1f)
                 .padding(end = 12.dp),
-            maxSteps = 5,
+            maxSteps = maxSteps,
             currentSteps = currentStep
         )
         Text(
             modifier = Modifier.padding(end = 16.dp),
-            text = "step $currentStep of 5",
+            text = "step $currentStep of $maxSteps",
             style = TextStyle(
                 fontSize = 12.sp,
                 lineHeight = 16.sp,

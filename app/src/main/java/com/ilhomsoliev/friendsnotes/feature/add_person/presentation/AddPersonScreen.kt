@@ -43,10 +43,11 @@ fun AddPersonScreen(
     val dateOfBirth by vm.dateOfBirth.collectAsState()
 
     LaunchedEffect(key1 = currentStep, block = {
-        if (currentStep == 6) {
+        if (currentStep == 7) {
             goToMainScreen()
         }
     })
+
     val isButtonActive = when (currentStep) {
         1 -> personType != null
         2 -> personName.isNotEmpty()
@@ -70,6 +71,7 @@ fun AddPersonScreen(
             dislikedThings = dislikedThings,
             notes = notes,
             isCurrentButtonActive = isButtonActive,
+            isShowingLoadingAnimation = currentStep == 6,
         ), callback = object : AddPersonCallback {
             override fun onNextClick() {
                 if (isButtonActive) {
