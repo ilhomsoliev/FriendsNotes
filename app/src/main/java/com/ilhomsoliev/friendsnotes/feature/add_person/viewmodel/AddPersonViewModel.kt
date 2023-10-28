@@ -3,16 +3,20 @@ package com.ilhomsoliev.friendsnotes.feature.add_person.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ilhomsoliev.friendsnotes.data.DataStoreManager
+import com.ilhomsoliev.friendsnotes.data.repository.PersonRepository
 import com.ilhomsoliev.friendsnotes.shared.model.PersonType
+import com.ilhomsoliev.friendsnotes.shared.model.person.PersonModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 const val maxSteps = 6
+
 class AddPersonViewModel(
-    private val dataStoreManager: DataStoreManager
+    private val personRepository: PersonRepository,
+    private val dataStoreManager: DataStoreManager,
 ) : ViewModel() {
-    private val _currentStep = MutableStateFlow(1) // TODO change it to 1
+    private val _currentStep = MutableStateFlow(1)
     val currentStep = _currentStep.asStateFlow()
 
     private val _personType = MutableStateFlow<PersonType?>(null)
@@ -33,11 +37,6 @@ class AddPersonViewModel(
     private val _dateOfBirth = MutableStateFlow<Long?>(null)
     val dateOfBirth = _dateOfBirth.asStateFlow()
 
-
-    fun onStepChange() {
-
-    }
-
     fun onPersonTypeChange(personType: PersonType) {
         _personType.value = personType
     }
@@ -45,7 +44,31 @@ class AddPersonViewModel(
     fun onNextScreen() {
         // TODO do extra check before going to next screen
         viewModelScope.launch {
-            if (_currentStep.value == 5) {
+            if (_currentStep.value == maxSteps) {
+                // add person into database
+                val personName = _personName.value
+                val dateOfBirth = _dateOfBirth.value
+                val personType = _personType.value
+                val favoriteFood = _favoriteFood.value
+                val dislikedThings = _dislikedThings.value
+                val notes = _notes.value
+
+                if (!(personName.isNotEmpty() &&
+                            dateOfBirth != null &&
+                            personType != null
+                            )
+                ) return@launch // Show snackbar
+
+                val personModel = PersonModel(
+                    id = null,
+                    name = personName,
+                    dateOfBirth = dateOfBirth ?: 0L,
+                    favoriteFood = favoriteFood,
+                    dislikedThings = dislikedThings,
+                    notes = notes,
+                    type = personType ?: PersonType.LOVELY
+                )
+                personRepository.addPerson(personModel)
                 dataStoreManager.changeIsFirstTimeInActive(false)
             }
             _currentStep.value = _currentStep.value + 1

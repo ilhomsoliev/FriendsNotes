@@ -9,6 +9,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ilhomsoliev.friendsnotes.feature.add_person.presentation.AddPersonScreenComposable
 import com.ilhomsoliev.friendsnotes.feature.main.presentation.MainInitContainerComposable
 import com.ilhomsoliev.friendsnotes.feature.on_board.OnBoardContainerComposable
+import com.ilhomsoliev.friendsnotes.feature.person_details.presentation.PersonDetailsComposable
 
 @Composable
 fun Navigation() {
@@ -33,6 +34,8 @@ fun Navigation() {
         OnBoardContainerComposable(navController)
 
         AddPersonScreenComposable(navController)
+
+        PersonDetailsComposable(navController)
 
     }
 }

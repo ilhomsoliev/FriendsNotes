@@ -28,6 +28,9 @@ fun NavGraphBuilder.MainInitContainerComposable(navController: NavController) {
             },
             openAddPerson = {
                 navController.navigate(Screens.AddPersonScreen.route)
+            },
+            openPersonDetails = {
+                navController.navigate(Screens.PersonDetailsScreen.buildRoute(it))
             }
         )
     }
@@ -38,6 +41,7 @@ fun MainInitContainer(
     vm: MainViewModel,
     openLogin: () -> Unit,
     openAddPerson: () -> Unit,
+    openPersonDetails: (id: Int) -> Unit,
 ) {
 
     val uiState by vm.uiState
@@ -50,9 +54,8 @@ fun MainInitContainer(
         is UiState.Loaded -> {
             MainScreen(
                 vm = vm,
-                onAddNewPerson = {
-                    openAddPerson()
-                }
+                onAddNewPerson = openAddPerson,
+                openPersonDetails = openPersonDetails
             )
         }
 

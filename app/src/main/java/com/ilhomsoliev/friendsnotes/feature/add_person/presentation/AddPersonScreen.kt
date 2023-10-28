@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.ilhomsoliev.friendsnotes.app.navigation.Screens
+import com.ilhomsoliev.friendsnotes.core.printToLog
 import com.ilhomsoliev.friendsnotes.feature.add_person.viewmodel.AddPersonViewModel
 import com.ilhomsoliev.friendsnotes.shared.model.PersonType
 import org.koin.androidx.compose.koinViewModel
@@ -43,6 +44,7 @@ fun AddPersonScreen(
     val dateOfBirth by vm.dateOfBirth.collectAsState()
 
     LaunchedEffect(key1 = currentStep, block = {
+        currentStep.printToLog()
         if (currentStep == 7) {
             goToMainScreen()
         }

@@ -123,7 +123,7 @@ fun AddPersonContent(
         }
     } else {
         LoadingAddPersonScreen {
-            // callback.onNextClick()
+            callback.onNextClick()
         }
     }
 }

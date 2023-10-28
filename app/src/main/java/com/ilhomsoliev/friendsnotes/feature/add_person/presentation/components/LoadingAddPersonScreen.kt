@@ -22,7 +22,6 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun LoadingAddPersonScreen(
-
     onAnimationFinished: () -> Unit
 ) {
     val duration = 3000L
@@ -41,7 +40,6 @@ fun LoadingAddPersonScreen(
     )
 
     LaunchedEffect(Unit) {
-        // animationFinished.value = true
         delay(duration)
         onAnimationFinished()
     }

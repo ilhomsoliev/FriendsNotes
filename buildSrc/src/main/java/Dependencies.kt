@@ -113,11 +113,10 @@ fun DependencyHandlerScope.retrofit() = implementation(
     "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2",
 )
 
-const val room = "2.4.3"
+const val room = "2.6.0"
 
 fun DependencyHandlerScope.room() = implementation(
     "androidx.room:room-runtime:$room",
-    //"androidx.room:room-compiler:$room",
     "androidx.room:room-ktx:$room",
     "androidx.room:room-paging:$room",
 )

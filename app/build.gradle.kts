@@ -2,15 +2,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     dependencies {
-        classpath("com.google.gms:google-services:4.3.15")
+        classpath("com.google.gms:google-services:4.4.0")
     }
 }
 
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("kotlin-kapt")
-
+    kotlin("kapt")
+    // id("com.google.devtools.ksp")
 }
 
 baseConfig()
@@ -28,6 +28,10 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+    kapt {
+        correctErrorTypes = true
+        useBuildCache = true
+    }
 }
 
 dependencies {
@@ -38,7 +42,8 @@ dependencies {
     androidBase()
     compose()
     room()
-    kapt("androidx.room:room-compiler:2.4.3")
+    kapt("androidx.room:room-compiler:2.6.0")
+    implementation("androidx.room:room-ktx:$room")
     dataStore()
 
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")

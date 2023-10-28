@@ -1,6 +1,7 @@
 package com.ilhomsoliev.friendsnotes.feature.main.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -22,21 +23,27 @@ import androidx.compose.ui.unit.sp
 fun NoteItem(
     modifier: Modifier = Modifier,
     gradientColors: List<Color>,
-    emoji: String,
+    emoji: String? = null,
     text: String,
+    onClick: () -> Unit,
 ) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(24.dp))
-            .background(Brush.linearGradient(gradientColors)),
+            .background(Brush.linearGradient(gradientColors))
+            .clickable {
+                onClick()
+            },
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                modifier = Modifier.padding(bottom = 12.dp),
-                text = emoji,
-                fontSize = 44.sp
-            )
+            emoji?.let {
+                Text(
+                    modifier = Modifier.padding(bottom = 12.dp),
+                    text = emoji,
+                    fontSize = 44.sp
+                )
+            }
             Text(
                 text = text,
                 style = TextStyle(
