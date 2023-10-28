@@ -19,7 +19,7 @@ private fun DependencyHandlerScope.yandexmap() = implementation(
 
 private const val composeVer = Config.composeUiVer
 
-private const val materialVer = "1.0.1"
+private const val materialVer = "1.1.2"
 
 fun DependencyHandlerScope.compose() = implementation(
     "androidx.compose.material3:material3:$materialVer",

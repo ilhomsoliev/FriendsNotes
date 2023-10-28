@@ -36,10 +36,12 @@ data class AddPersonState(
 interface AddPersonCallback {
     fun onNextClick()
     fun onBack()
+    fun onPersonTypeChange(personType: PersonType)
+    fun onPersonNameChange(value: String)
+    fun onSelectBirthDate(value: Long)
 
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddPersonContent(
     state: AddPersonState,
@@ -72,10 +74,19 @@ fun AddPersonContent(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     when (it) {
-                        1 -> Step1TypeComponent()
-                        2 -> Step2NameComponent()
-                        3 -> Step3BirthdayComponent()
-                        4 -> Step4FoodComponent()
+                        1 -> Step1TypeComponent(state.personType) {
+                            callback.onPersonTypeChange(it)
+                        }
+
+                        2 -> Step2NameComponent(text = state.name) {
+                            callback.onPersonNameChange(it)
+                        }
+
+                        3 -> Step3BirthdayComponent(state.name, state.dateOfBirth, onSelectDate = {
+                            callback.onSelectBirthDate(it)
+                        })
+
+                        4 -> Step4FoodComponent(state.name, "", {})
                         5 -> Step5DislikedComponent()
                         6 -> Step6NotesComponent()
                     }

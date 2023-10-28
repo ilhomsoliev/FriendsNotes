@@ -12,7 +12,10 @@ fun Navigation() {
 
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Screens.MainScreen.route) {
+    NavHost(
+        navController = navController,
+        startDestination = Screens.AddPersonScreen.route/*Screens.MainScreen.route*/
+    ) {
 
         MainInitContainerComposable(navController)
 

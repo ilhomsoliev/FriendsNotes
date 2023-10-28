@@ -1,4 +1,4 @@
-package com.ilhomsoliev.friendsnotes.feature.addNote.viewmodel
+package com.ilhomsoliev.friendsnotes.feature.add_note.viewmodel
 
 import androidx.lifecycle.ViewModel
 

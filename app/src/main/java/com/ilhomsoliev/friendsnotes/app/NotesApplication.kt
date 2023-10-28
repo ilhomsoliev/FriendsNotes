@@ -27,7 +27,7 @@ class NotesApplication : Application() {
 
 val viewModelModule = module {
     viewModel { MainViewModel(get()) }
-    viewModel { AddPersonViewModel() }
+    viewModel { AddPersonViewModel(get()) }
 }
 
 fun dataStore() = module {

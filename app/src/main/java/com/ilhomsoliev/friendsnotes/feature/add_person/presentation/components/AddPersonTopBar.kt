@@ -32,7 +32,7 @@ fun AddPersonTopBar(
     onBack: () -> Unit,
 ) {
     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = { onBack() }) {
             Icon(imageVector = Icons.Default.ArrowBackIos, contentDescription = null)
         }
         ProgressBar(

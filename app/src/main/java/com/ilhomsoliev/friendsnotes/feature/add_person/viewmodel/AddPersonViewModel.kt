@@ -1,12 +1,17 @@
 package com.ilhomsoliev.friendsnotes.feature.add_person.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.ilhomsoliev.friendsnotes.data.DataStoreManager
 import com.ilhomsoliev.friendsnotes.shared.model.PersonType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
-class AddPersonViewModel : ViewModel() {
-    private val _currentStep = MutableStateFlow(1)
+class AddPersonViewModel(
+    val dataStoreManager: DataStoreManager
+) : ViewModel() {
+    private val _currentStep = MutableStateFlow(3) // TODO change it to 1
     val currentStep = _currentStep.asStateFlow()
 
     private val _personType = MutableStateFlow<PersonType?>(null)
@@ -36,5 +41,27 @@ class AddPersonViewModel : ViewModel() {
         _personType.value = personType
     }
 
+    fun onNextScreen() {
+        // TODO do extra check before going to next screen
+        viewModelScope.launch {
+            if (_currentStep.value == 5) {
+                dataStoreManager.changeIsFirstTimeInActive(false)
+            }
+            _currentStep.value = _currentStep.value + 1
+        }
+    }
 
+    fun onPrevScreen() {
+        if (_currentStep.value != 1) {
+            _currentStep.value = _currentStep.value - 1
+        }
+    }
+
+    fun onPersonNameChange(value: String) {
+        _personName.value = value
+    }
+
+    fun onDateOfBirthChange(value: Long) {
+        _dateOfBirth.value = value
+    }
 }

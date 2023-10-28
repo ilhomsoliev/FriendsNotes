@@ -29,6 +29,7 @@ import com.ilhomsoliev.friendsnotes.R
 fun CustomButton(
     modifier: Modifier = Modifier,
     text: String,
+    textColor: Color? = null,
     fontSize: TextUnit = 18.sp,
     isActive: Boolean = true,
     isLoading: Boolean = false,
@@ -56,7 +57,9 @@ fun CustomButton(
                 lineHeight = 24.sp,
                 fontFamily = FontFamily(Font(R.font.roboto)),
                 fontWeight = FontWeight(500),
-                color = if (isActive) Color(0xFFFFFFFF) else Color(0x3D040F23),
+                color = if (textColor != null && !isActive) textColor else if (isActive) Color(
+                    0xFFFFFFFF
+                ) else Color(0x3D040F23),
                 letterSpacing = 0.15.sp,
             )
         )
