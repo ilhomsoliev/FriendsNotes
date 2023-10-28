@@ -36,7 +36,7 @@ interface MainCallback {
     fun onItemClick(id: Int)
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MainContent(
     state: MainState,

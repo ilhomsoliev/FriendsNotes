@@ -20,5 +20,8 @@ class PersonRepository(
     fun getRelatives() = dao.getPersons(PersonType.RELATIVE)
 
     fun getLovely() = dao.getPersons(PersonType.LOVELY)
+    suspend fun deletePerson(personModel: PersonModel) {
+        dao.delete(personModel.map())
+    }
 
 }

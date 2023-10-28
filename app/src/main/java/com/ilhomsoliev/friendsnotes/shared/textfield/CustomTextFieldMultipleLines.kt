@@ -1,6 +1,7 @@
 package com.ilhomsoliev.friendsnotes.shared.textfield
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,8 @@ fun CustomTextFieldMultipleLines(
     modifier: Modifier = Modifier,
     hint: String,
     text: String,
+    isReadOnly: Boolean = false,
+    onClick: (() -> Unit)? = null,
     onValueChange: (String) -> Unit,
 ) {
     val textStyle = TextStyle(
@@ -35,14 +38,19 @@ fun CustomTextFieldMultipleLines(
         color = Color(0xFF93979F),
         letterSpacing = 0.15.sp,
     )
-    BasicTextField(value = text, onValueChange = {
-        onValueChange(it)
-    }, textStyle = textStyle.copy(color = Color(0xFF151618))) { innerTextField ->
+    BasicTextField(
+        value = text, onValueChange = {
+            onValueChange(it)
+        },
+        readOnly = isReadOnly,
+        textStyle = textStyle.copy(color = Color(0xFF151618))
+    ) { innerTextField ->
         Box(
             modifier = modifier
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color(0xFFF1F2F4))
                 .height(300.dp)
+                .then(if (onClick != null) Modifier.clickable { onClick() } else Modifier)
                 .padding(16.dp),
             contentAlignment = Alignment.TopStart
         ) {

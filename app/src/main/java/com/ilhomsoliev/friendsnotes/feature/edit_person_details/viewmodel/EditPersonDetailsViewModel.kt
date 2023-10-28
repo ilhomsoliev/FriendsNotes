@@ -1,4 +1,4 @@
-package com.ilhomsoliev.friendsnotes.feature.person_details.viewmodel
+package com.ilhomsoliev.friendsnotes.feature.edit_person_details.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class PersonDetailsViewModel(
+class EditPersonDetailsViewModel(
     private val personRepository: PersonRepository
 ) : ViewModel() {
 
@@ -22,11 +22,4 @@ class PersonDetailsViewModel(
         }
     }
 
-    fun deletePerson() {
-        viewModelScope.launch {
-            _person.value?.let {
-                personRepository.deletePerson(it)
-            }
-        }
-    }
 }

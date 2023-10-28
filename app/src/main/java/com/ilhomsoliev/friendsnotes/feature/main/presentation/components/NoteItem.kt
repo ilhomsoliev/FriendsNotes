@@ -14,10 +14,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ilhomsoliev.friendsnotes.R
 
 @Composable
 fun NoteItem(
@@ -25,15 +29,15 @@ fun NoteItem(
     gradientColors: List<Color>,
     emoji: String? = null,
     text: String,
-    onClick: () -> Unit,
+    onClick: (() -> Unit)? = null,
 ) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(24.dp))
             .background(Brush.linearGradient(gradientColors))
-            .clickable {
+            .then(if (onClick != null) Modifier.clickable {
                 onClick()
-            },
+            } else Modifier),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -49,7 +53,9 @@ fun NoteItem(
                 style = TextStyle(
                     fontSize = 24.sp,
                     lineHeight = 32.sp,
-                    fontWeight = FontWeight(400),
+                    fontFamily = FontFamily(Font(R.font.inter)),
+                    fontWeight = FontWeight(900),
+                    fontStyle = FontStyle.Italic,
                     color = Color(0xFF212123),
                     textAlign = TextAlign.Center,
                 )
@@ -63,6 +69,7 @@ fun MainTitle(
     modifier: Modifier,
     text: String,
 ) {
+
     Text(
         modifier = modifier,
         text = text,
