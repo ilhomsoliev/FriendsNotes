@@ -51,50 +51,63 @@ fun AddPersonScreen(
         1 -> personType != null
         2 -> personName.isNotEmpty()
         3 -> dateOfBirth != null
-        4 -> favoriteFood.isNotEmpty()
-        5 -> dislikedThings.isNotEmpty()
-        6 -> notes.isNotEmpty()
+        4 -> true // favoriteFood.isNotEmpty()
+        5 -> true // dislikedThings.isNotEmpty()
+        6 -> true // notes.isNotEmpty()
         else -> false
     }
 
-    AddPersonContent(state = AddPersonState(
-        personType = personType,
-        currentStep = currentStep,
-        name = personName,
-        dateOfBirth = if (dateOfBirth != null) SimpleDateFormat(
-            "yyyy-MM-dd",
-            Locale.ROOT
-        ).format(Date(dateOfBirth!!)) else "",
-        favoriteFood = favoriteFood,
-        dislikedThings = dislikedThings,
-        notes = notes,
-        isCurrentButtonActive = isButtonActive,
-    ), callback = object : AddPersonCallback {
-        override fun onNextClick() {
-            if (isButtonActive) {
-                vm.onNextScreen()
-            } else {
-                // TODO Show Snackbar
+    AddPersonContent(
+        state = AddPersonState(
+            personType = personType,
+            currentStep = currentStep,
+            name = personName,
+            dateOfBirth = if (dateOfBirth != null) SimpleDateFormat(
+                "yyyy-MM-dd",
+                Locale.ROOT
+            ).format(Date(dateOfBirth!!)) else "",
+            favoriteFood = favoriteFood,
+            dislikedThings = dislikedThings,
+            notes = notes,
+            isCurrentButtonActive = isButtonActive,
+        ), callback = object : AddPersonCallback {
+            override fun onNextClick() {
+                if (isButtonActive) {
+                    vm.onNextScreen()
+                } else {
+                    // TODO Show Snackbar
+                }
             }
-        }
 
-        override fun onBack() {
-            if (currentStep == 1) popBack()
-            else vm.onPrevScreen()
-        }
+            override fun onBack() {
+                if (currentStep == 1) popBack()
+                else vm.onPrevScreen()
+            }
 
-        override fun onPersonTypeChange(personType: PersonType) {
-            vm.onPersonTypeChange(personType)
-        }
+            override fun onPersonTypeChange(personType: PersonType) {
+                vm.onPersonTypeChange(personType)
+            }
 
-        override fun onPersonNameChange(value: String) {
-            vm.onPersonNameChange(value)
-        }
+            override fun onPersonNameChange(value: String) {
+                vm.onPersonNameChange(value)
+            }
 
-        override fun onSelectBirthDate(value: Long) {
-            vm.onDateOfBirthChange(value)
-        }
+            override fun onSelectBirthDate(value: Long) {
+                vm.onDateOfBirthChange(value)
+            }
 
-    })
+            override fun onPersonFavoriteFoodChange(value: String) {
+                vm.onPersonFoodChange(value)
+            }
+
+            override fun onPersonDislikedChange(value: String) {
+                vm.onPersonDislikedChange(value)
+            }
+
+            override fun onPersonNotesChange(value: String) {
+                vm.onPersonNotesChange(value)
+            }
+
+        })
 
 }

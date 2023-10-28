@@ -64,4 +64,16 @@ class AddPersonViewModel(
     fun onDateOfBirthChange(value: Long) {
         _dateOfBirth.value = value
     }
+
+    fun onPersonFoodChange(value: String) {
+        _favoriteFood.value = value
+    }
+
+    fun onPersonDislikedChange(value: String) {
+        _dislikedThings.value = value
+    }
+
+    fun onPersonNotesChange(value: String) {
+        _notes.value = value
+    }
 }

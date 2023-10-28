@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,6 +38,9 @@ interface AddPersonCallback {
     fun onPersonTypeChange(personType: PersonType)
     fun onPersonNameChange(value: String)
     fun onSelectBirthDate(value: Long)
+    fun onPersonFavoriteFoodChange(value: String)
+    fun onPersonDislikedChange(value: String)
+    fun onPersonNotesChange(value: String)
 
 }
 
@@ -82,17 +84,37 @@ fun AddPersonContent(
                             callback.onPersonNameChange(it)
                         }
 
-                        3 -> Step3BirthdayComponent(state.name, state.dateOfBirth, onSelectDate = {
-                            callback.onSelectBirthDate(it)
-                        })
+                        3 -> Step3BirthdayComponent(
+                            personName = state.name,
+                            selectedDate = state.dateOfBirth, onSelectDate = {
+                                callback.onSelectBirthDate(it)
+                            })
 
-                        4 -> Step4FoodComponent(state.name, "", {})
-                        5 -> Step5DislikedComponent()
-                        6 -> Step6NotesComponent()
+                        4 -> Step4FoodComponent(
+                            personName = state.name,
+                            text = state.favoriteFood,
+                            onValueChange = {
+                                callback.onPersonFavoriteFoodChange(it)
+                            })
+
+                        5 -> Step5DislikedComponent(
+                            personName = state.name,
+                            text = state.dislikedThings,
+                            onValueChange = {
+                                callback.onPersonDislikedChange(it)
+                            }
+                        )
+
+                        6 -> Step6NotesComponent(
+                            personName = state.name,
+                            text = state.notes,
+                            onValueChange = {
+                                callback.onPersonNotesChange(it)
+                            }
+                        )
                     }
                 }
             }
         }
     }
-
 }

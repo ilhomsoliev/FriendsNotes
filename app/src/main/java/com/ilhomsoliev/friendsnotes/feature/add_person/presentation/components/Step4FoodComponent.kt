@@ -9,7 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.ilhomsoliev.friendsnotes.shared.textfield.CustomTextField
 import com.ilhomsoliev.friendsnotes.shared.textfield.CustomTextFieldMultipleLines
 
 @Composable
@@ -25,11 +24,12 @@ fun Step4FoodComponent(
     )
 
     Spacer(modifier = Modifier.height(32.dp))
+
     CustomTextFieldMultipleLines(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp),
-        hint = "Please indicate [name]'s favorite food\u2028example: strawberries, carrots, cheesecake, etc. \n",
+        hint = "Please indicate $personName's favorite food\u2028example: strawberries, carrots, cheesecake, etc. \n",
         text = text,
         onValueChange = onValueChange
     )
