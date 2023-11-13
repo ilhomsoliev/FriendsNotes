@@ -6,6 +6,7 @@ import com.ilhomsoliev.friendsnotes.data.DataStoreManager
 import com.ilhomsoliev.friendsnotes.data.repository.PersonRepository
 import com.ilhomsoliev.friendsnotes.shared.model.PersonType
 import com.ilhomsoliev.friendsnotes.shared.model.person.PersonModel
+import com.ilhomsoliev.friendsnotes.shared.model.person.PersonsDataTypes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -61,12 +62,12 @@ class AddPersonViewModel(
 
                 val personModel = PersonModel(
                     id = null,
-                    name = personName,
-                    dateOfBirth = dateOfBirth ?: 0L,
-                    favoriteFood = favoriteFood,
-                    dislikedThings = dislikedThings,
-                    notes = notes,
-                    type = personType ?: PersonType.LOVELY
+                    name = PersonsDataTypes.Name(personName),
+                    dateOfBirth = PersonsDataTypes.DateOfBirth(dateOfBirth, ""),
+                    favoriteFood = PersonsDataTypes.FavoriteFood(favoriteFood),
+                    dislikedThings = PersonsDataTypes.DislikedThings(dislikedThings),
+                    notes = PersonsDataTypes.Notes(notes),
+                    type = personType
                 )
                 personRepository.addPerson(personModel)
                 dataStoreManager.changeIsFirstTimeInActive(false)

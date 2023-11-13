@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -78,7 +77,7 @@ fun MainContent(
                                 .aspectRatio(1.8f)
                                 .padding(16.dp),
                             emoji = "❤",
-                            text = lovely.name,
+                            text = lovely.name.value,
                             gradientColors = listOf(
                                 Color(0xFFFFF5C9),
                                 Color(0xFFFFEBEC),
@@ -100,7 +99,7 @@ fun MainContent(
                                         .aspectRatio(1f)
                                         .padding(start = 16.dp, end = 8.dp)
                                         .padding(vertical = 16.dp),
-                                    text = person.name,
+                                    text = person.name.value,
                                     gradientColors = listOf(
                                         Color(0xFFF4EEFE),
                                         Color(0xFFE3F7FF),
@@ -135,7 +134,7 @@ fun MainContent(
                                         .aspectRatio(1f)
                                         .padding(start = 16.dp, end = 8.dp)
                                         .padding(vertical = 16.dp),
-                                    text = person.name,
+                                    text = person.name.value,
                                     gradientColors = listOf(
                                         Color(0xFFF4EEFE),
                                         Color(0xFFE3F7FF),

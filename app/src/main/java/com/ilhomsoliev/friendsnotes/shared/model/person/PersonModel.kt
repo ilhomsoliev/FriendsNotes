@@ -1,34 +1,35 @@
 package com.ilhomsoliev.friendsnotes.shared.model.person
 
+import com.ilhomsoliev.friendsnotes.core.formatMillisToDateString
 import com.ilhomsoliev.friendsnotes.data.model.PersonEntity
 import com.ilhomsoliev.friendsnotes.shared.model.PersonType
 
 data class PersonModel(
     val id: Int?,
-    val name: String,
+    val name: PersonsDataTypes.Name,
     val type: PersonType,
-    val dateOfBirth: Long,
-    val favoriteFood: String,
-    val dislikedThings: String,
-    val notes: String,
+    val dateOfBirth: PersonsDataTypes.DateOfBirth,
+    val favoriteFood: PersonsDataTypes.FavoriteFood,
+    val dislikedThings: PersonsDataTypes.DislikedThings,
+    val notes: PersonsDataTypes.Notes,
 ) {
     fun map(): PersonEntity = PersonEntity(
         id = id,
-        name = name,
+        name = name.value,
         type = type.name,
-        dateOfBirth = dateOfBirth,
-        favoriteFood = favoriteFood,
-        dislikedThings = dislikedThings,
-        notes = notes,
+        dateOfBirth = dateOfBirth.value,
+        favoriteFood = favoriteFood.value,
+        dislikedThings = dislikedThings.value,
+        notes = notes.value,
     )
 }
 
 fun PersonEntity.map(): PersonModel = PersonModel(
     id = id,
-    name = name,
+    name = PersonsDataTypes.Name(name),
     type = PersonType.valueOf(type),
-    dateOfBirth = dateOfBirth,
-    favoriteFood = favoriteFood,
-    dislikedThings = dislikedThings,
-    notes = notes,
+    dateOfBirth = PersonsDataTypes.DateOfBirth(dateOfBirth, formatMillisToDateString(dateOfBirth)),
+    favoriteFood =PersonsDataTypes.FavoriteFood(favoriteFood),
+    dislikedThings = PersonsDataTypes.DislikedThings(dislikedThings),
+    notes = PersonsDataTypes.Notes(notes),
 )

@@ -14,9 +14,12 @@ import org.koin.androidx.compose.koinViewModel
 fun NavGraphBuilder.EditPersonDetailsComposable(navController: NavController) {
     composable(route = Screens.EditPersonDetailsScreen.route) {
         val personId = Screens.EditPersonDetailsScreen.getPersonId(it)
+        val personDataId = Screens.EditPersonDetailsScreen.getPersonDataId(it)
+
         EditPersonDetailsScreen(
             vm = koinViewModel(),
             personId = personId,
+            personDataId,
             onBack = {
                 navController.popBackStack()
             }
@@ -28,13 +31,15 @@ fun NavGraphBuilder.EditPersonDetailsComposable(navController: NavController) {
 fun EditPersonDetailsScreen(
     vm: EditPersonDetailsViewModel,
     personId: Int,
+    personDataId: String,
     onBack: () -> Unit
 ) {
     val person by vm.person.collectAsState()
 
     LaunchedEffect(key1 = Unit, block = {
-        vm.loadPerson(personId)
+        vm.loadPerson(personId, personDataId)
     })
+
     EditPersonDetailsContent(
         state = EditPersonDetailsState(person = person),
         object : EditPersonDetailsCallback {

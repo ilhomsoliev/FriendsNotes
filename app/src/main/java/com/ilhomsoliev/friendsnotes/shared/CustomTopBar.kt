@@ -1,4 +1,4 @@
-package com.ilhomsoliev.friendsnotes.feature.person_details.presentation.components
+package com.ilhomsoliev.friendsnotes.shared
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.ilhomsoliev.friendsnotes.R
 
 @Composable
-fun PersonDetailsTopBar(
+fun CustomTopBar(
     title: String,
     onBackClick: () -> Unit,
     onDeleteClick: () -> Unit,

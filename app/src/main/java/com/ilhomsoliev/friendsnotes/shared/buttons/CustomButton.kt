@@ -35,9 +35,14 @@ fun CustomButton(
     isLoading: Boolean = false,
     shape: Shape = CircleShape,
     innerPadding: PaddingValues = PaddingValues(vertical = 14.dp),
+    backgroundColor: Color? = null,
     onClick: () -> Unit,
 ) {
-    val background = Modifier.background(if (isActive) Color(0xFF151618) else Color(0xFFF1F2F4))
+    val background = Modifier.background(
+        backgroundColor ?: if (isActive) Color(0xFF151618) else Color(
+            0xFFF1F2F4
+        )
+    )
 
     Box(
         modifier = modifier
@@ -50,7 +55,7 @@ fun CustomButton(
     ) {
 
         Text(
-            modifier = Modifier/*.padding(innerPadding)*/,
+            modifier = Modifier,
             text = if (isLoading) " " else text,
             style = TextStyle(
                 fontSize = 16.sp,

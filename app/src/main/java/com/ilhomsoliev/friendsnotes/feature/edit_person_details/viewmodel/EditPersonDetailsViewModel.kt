@@ -15,8 +15,10 @@ class EditPersonDetailsViewModel(
     private val _person = MutableStateFlow<PersonModel?>(null)
     val person = _person.asStateFlow()
 
-    fun loadPerson(personId: Int) {
+
+    fun loadPerson(personId: Int, personDataId: String) {
         viewModelScope.launch {
+
             val person = personRepository.getPersonById(personId)
             _person.value = person
         }
