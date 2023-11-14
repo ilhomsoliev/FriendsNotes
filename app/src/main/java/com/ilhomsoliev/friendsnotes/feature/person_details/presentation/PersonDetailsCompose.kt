@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
@@ -55,11 +57,13 @@ fun PersonDetailsContent(
 ) {
     state.person?.let { person ->
         Scaffold(topBar = {
-            CustomTopBar(title = person.name.value, onBackClick = {
-                callback.onBackClick()
-            }, onDeleteClick = {
-                callback.onDeleteClick()
-            })
+            CustomTopBar(title = person.name.value,
+                actionIcon = Icons.Default.Delete,
+                onBackClick = {
+                    callback.onBackClick()
+                }, onActionClick = {
+                    callback.onDeleteClick()
+                })
         }) {
             LazyColumn(
                 Modifier

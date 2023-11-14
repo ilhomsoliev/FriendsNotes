@@ -20,40 +20,48 @@ import com.ilhomsoliev.friendsnotes.shared.textfield.CustomTextFieldMultipleLine
 
 @Composable
 fun PersonDetailsDataItem(
-    title: String,
+    modifier: Modifier = Modifier,
+    title: String? = null,
     value: String,
     isMultipleLines: Boolean = false,
-    onClick: () -> Unit,
+    isReadOnly: Boolean = true,
+    onValueChange: (((String) -> Unit)?) = null,
+    onClick: (() -> Unit)? = null,
 ) {
-    Text(
-        text = title,
-        style = TextStyle(
-            fontSize = 24.sp,
-            lineHeight = 32.sp,
-            fontFamily = FontFamily(Font(R.font.inter)),
-            fontWeight = FontWeight(900),
-            fontStyle = FontStyle.Italic,
-            color = Color(0xFF212123),
+    title?.let {
+        Text(
+            text = title,
+            style = TextStyle(
+                fontSize = 24.sp,
+                lineHeight = 32.sp,
+                fontFamily = FontFamily(Font(R.font.inter)),
+                fontWeight = FontWeight(900),
+                fontStyle = FontStyle.Italic,
+                color = Color(0xFF212123),
+            )
         )
-    )
-
+    }
     Spacer(modifier = Modifier.height(16.dp))
     if (!isMultipleLines)
         CustomTextField(
             modifier = Modifier.fillMaxWidth(),
             hint = "",
             text = value,
-            onValueChange = {},
-            isReadOnly = true,
+            onValueChange = {
+                onValueChange?.invoke(it)
+            },
+            isReadOnly = isReadOnly,
             onClick = {
-                onClick()
+                onClick?.invoke()
             })
     else CustomTextFieldMultipleLines(modifier = Modifier.fillMaxWidth(),
         hint = "",
         text = value,
-        onValueChange = {},
-        isReadOnly = true,
+        onValueChange = {
+            onValueChange?.invoke(it)
+        },
+        isReadOnly = isReadOnly,
         onClick = {
-            onClick()
+            onClick?.invoke()
         })
 }

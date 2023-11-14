@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -23,8 +24,9 @@ import com.ilhomsoliev.friendsnotes.R
 @Composable
 fun CustomTopBar(
     title: String,
+    actionIcon: ImageVector,
     onBackClick: () -> Unit,
-    onDeleteClick: () -> Unit,
+    onActionClick: () -> Unit,
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -47,9 +49,9 @@ fun CustomTopBar(
             )
         )
         IconButton(onClick = {
-            onDeleteClick()
+            onActionClick()
         }) {
-            Icon(imageVector = Icons.Default.Delete, contentDescription = null)
+            Icon(imageVector = actionIcon, contentDescription = null)
         }
     }
 }
