@@ -36,7 +36,7 @@ fun EditPersonDetailsScreen(
     onBack: () -> Unit
 ) {
     val person by vm.person.collectAsState()
-    val personsDataType by vm.personsDataType.collectAsState()
+    // val personsDataType by vm.personsDataType.collectAsState()
 
     LaunchedEffect(key1 = Unit, block = {
         vm.loadPerson(personId, personDataId)
