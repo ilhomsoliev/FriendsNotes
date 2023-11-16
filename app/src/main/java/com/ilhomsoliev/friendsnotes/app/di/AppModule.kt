@@ -10,7 +10,7 @@ import org.koin.dsl.module
 fun appModule() = module {
     single { getDatabaseInstance(androidContext()) }
     single<PersonDao> { get<ApplicationDatabase>().personDao() }
-}
+}//jnjknkjnjk
 
 fun dataStore() = module {
     single { DataStoreManager(androidContext()) }
