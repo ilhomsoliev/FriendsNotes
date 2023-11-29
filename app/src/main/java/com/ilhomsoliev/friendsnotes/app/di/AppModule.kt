@@ -15,5 +15,5 @@ fun appModule() = module {
 fun dataStore() = module {
     single { DataStoreManager(androidContext()) }
 }
-// ads fasdf hbhjbhj sdf asdfkjnknjknjknjk adf asd fads hjbhjbjhb
+// ads fasdf hbhjbhj sdf asdfkjnknjknjknjk adf asd fads hjbhjbjhbвфыва
 
